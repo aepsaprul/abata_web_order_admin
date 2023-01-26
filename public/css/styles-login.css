@@ -1,0 +1,76 @@
+/* warna font icon #8a8b88 */
+/* warna btn #176BB3 */
+/* remixicon */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.pesan-kesalahan {
+  color: red;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.login {
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.login label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.login .email-container,
+.login .password-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.login .input {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px;
+}
+.login #email,
+.login #password {
+  width: 250px;
+  border: none;
+}
+.login #email:focus,
+.login #email:active,
+.login #password:focus,
+.login #password:active {
+  outline: none;
+  border: none;
+}
+.login .remember-container {
+  margin: 10px 0;
+}
+.login .remember-container span {
+  font-size: 14px;
+}
+.login .signin-container {
+  margin: 20px 0;
+  text-align: right;
+}
+.login .signin-container .btn-signin {
+  background-color: #176BB3;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+}
