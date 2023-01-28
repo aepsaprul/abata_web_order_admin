@@ -20,9 +20,9 @@
             <img src="{{ asset('icon/light-menu-fill.svg') }}" alt="">
             <div class="nav-text">menu</div>            
           </div>
-          <div><a href="{{ url('/') }}">Dashboard</a></div>
+          <div><a href="{{ url('/') }}"><img src="{{ asset('icon/dashboard-2-line.svg') }}" alt=""> Dashboard</a></div>
           <div>
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('icon/logout-circle-r-line.svg') }}" alt=""> Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
               @csrf
             </form>
@@ -42,10 +42,10 @@
 
   <div id="sidebarId" class="sidebar">
     <button class="closebtn" onclick="tutupSidebar()">x</button>
-    <a href="#"><img src="{{ asset('icon/eye-line.svg') }}" alt=""> Tentang</a>
-    <a href="#"><img src="{{ asset('icon/eye-line.svg') }}" alt=""> Layanan</a>
-    <a href="#"><img src="{{ asset('icon/eye-line.svg') }}" alt=""> Produk</a>
-    <a href="#"><img src="{{ asset('icon/eye-line.svg') }}" alt=""> Kontak</a>
+    <a href="#"><img src="{{ asset('icon/folder-line.svg') }}" alt=""> Kategori</a>
+    <a href="#"><img src="{{ asset('icon/gallery-line.svg') }}" alt=""> Produk</a>
+    <a href="#"><img src="{{ asset('icon/image-2-line.svg') }}" alt=""> Slide</a>
+    <a href="#"><img src="{{ asset('icon/todo-line.svg') }}" alt=""> Cara Pesan</a>
   </div>
 
   <script>

@@ -1,7 +1,3 @@
-/* body color #777777 */
-/* #555555 */
-/* header color var(--primary) */
-
 :root {
   --warnasatu: #082032;
   --warnadua: #474E68;
@@ -101,6 +97,11 @@ body {
   font-size: 18px;
   text-decoration: none;
   color: lightgray;
+  display: flex;
+  align-items: center;
+}
+.header .nav div a img {
+  margin-right: 5px;
 }
 .header .nav .nav-bar {
   display: flex;
