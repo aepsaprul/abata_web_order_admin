@@ -25,17 +25,17 @@
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>nama</th>
-            <th>produk</th>
+            <th style="text-align: left;">id</th>
+            <th style="text-align: left;">nama</th>
+            <th style="text-align: left;">produk</th>
             <th>quantity</th>
-            <th>kota</th>
-            <th>status</th>
-            <th>status bayar</th>
-            <th>penerima</th>
-            <th>tanggal</th>
+            <th style="text-align: left;">kota</th>
+            <th style="text-align: left;">status</th>
+            <th style="text-align: left;">status bayar</th>
+            <th style="text-align: left;">penerima</th>
+            <th style="text-align: left;">tanggal</th>
             <th>total</th>
-            <th>metode bayar</th>
+            <th style="text-align: left;">metode bayar</th>
           </tr>
         </thead>
         <tbody>
@@ -46,7 +46,7 @@
               <td>{{ $item->produk }}</td>
               <td style="text-align: center;">{{ $item->quantity }}</td>
               <td>{{ $item->kota }}</td>
-              <td>{{ $item->status }}</td>
+              <td><span style="border-radius: 10px; padding: 0 10px">{{ $item->status }}</span></td>
               <td>{{ $item->status_bayar }}</td>
               <td>{{ $item->penerima }}</td>
               <td>{{ $item->tanggal }}</td>
