@@ -42,9 +42,9 @@
 
   <div id="sidebarId" class="sidebar">
     <button class="closebtn" onclick="tutupSidebar()">x</button>
-    <a href="#"><img src="{{ asset('icon/folder-line.svg') }}" alt=""> Kategori</a>
-    <a href="#"><img src="{{ asset('icon/gallery-line.svg') }}" alt=""> Produk</a>
-    <a href="#"><img src="{{ asset('icon/image-2-line.svg') }}" alt=""> Slide</a>
+    <a href="{{ route('kategori') }}" class="{{ request()->is(['kategori', 'kategori/*']) ? 'active' : '' }}"><img src="{{ asset('icon/folder-line.svg') }}" alt=""> Kategori</a>
+    <a href="{{ route('produk') }}" class="{{ request()->is(['produk', 'produk/*']) ? 'active' : '' }}"><img src="{{ asset('icon/gallery-line.svg') }}" alt=""> Produk</a>
+    <a href="{{ route('slide') }}" class="{{ request()->is(['slide', 'slide/*']) ? 'active' : '' }}"><img src="{{ asset('icon/image-2-line.svg') }}" alt=""> Slide</a>
     <a href="#"><img src="{{ asset('icon/todo-line.svg') }}" alt=""> Cara Pesan</a>
   </div>
 

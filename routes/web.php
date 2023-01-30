@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\SlideController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +27,13 @@ Route::post('login/auth', [LoginController::class, 'authenticate'])->name('login
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::post('logout', [LoginController::class, 'logout'])->name('logout');
   Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+  // kategori
+  Route::get('kategori', [KategoriController::class, 'index'])->name('kategori');
+
+  // produk
+  Route::get('produk', [ProdukController::class, 'index'])->name('produk');
+
+  // slide
+  Route::get('slide', [SlideController::class, 'index'])->name('slide');
 });

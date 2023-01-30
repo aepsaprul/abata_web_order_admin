@@ -6,63 +6,81 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Login</title>
 
-  {{-- styles --}}
-  <link rel="stylesheet" href="{{ asset('css/styles-login.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('template/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
 </head>
-<body>
-  <div class="container">
-    <div class="content">
-      <div class="logo">
-        <img src="{{ asset('img/logo.png') }}" alt="" style="width: 150px;">
-      </div>        
-      <div class="login">
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="/" class="h1"><img src="{{ asset('img/logo.png') }}" alt="" style="max-width: 150px;"></a>
+      </div>
+      <div class="card-body">
         <form action="{{ route('login.auth') }}" method="POST">
           @csrf
-          <div class="email-container">
-            <label for="">Email</label>
-            <div class="input">
-              <input type="text" name="email" id="email" class="@error('email') is-invalid @enderror" required autofocus autocomplete="off">
-              <img src="{{ asset('icon/mail-line.svg') }}" alt="" style="max-width: 25px;">
+          <div class="input-group mb-3">
+            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" required autofocus placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text" style="width: 50px; padding-left: 18px;">
+                <span class="fas fa-user"></span>
+              </div>
             </div>
             <em class="pesan-kesalahan">@error('email') {{ $message }} @enderror</em>
           </div>
-          <div class="password-container">
-            <label for="">Password</label>
-            <div class="input">
-              <input type="password" name="password" id="password" required>
-              <img src="{{ asset('icon/eye-close-line.svg') }}" alt="" class="lihat-password" style="max-width: 25px; cursor: pointer;">
-              <img src="{{ asset('icon/eye-line.svg') }}" alt="" class="tutup-password" style="max-width: 25px; cursor: pointer; display: none;">
+          <div class="input-group mb-3">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text" style="width: 50px; padding-left: 16px;">
+                <span class="fas fa-eye fa-eye-slash" id="togglePassword"></span>
+              </div>
             </div>
           </div>
-          <div class="remember-container">
-            <label for="remember">
-            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> <span>Ingat Saya</span>
-            </label>
-          </div>
-          <div class="signin-container">
-            <button type="submit" class="btn-signin">Sign In</button>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label for="remember">
+                  Ingat Saya
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </div>
+            <!-- /.col -->
           </div>
         </form>
       </div>
+      <!-- /.card-body -->
     </div>
+    <!-- /.card -->
   </div>
+  <!-- /.login-box -->
+  
+  <!-- jQuery -->
+  <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
 
   <script>
-    const lihatPassword = document.querySelector(".lihat-password");
-    const tutupPassword = document.querySelector('.tutup-password');
-    const password = document.querySelector('#password');
+    const togglePassword = document.querySelector("#togglePassword");
+      const password = document.querySelector("#password");
 
-    lihatPassword.addEventListener('click', function () {
-      password.setAttribute('type', 'text');
-      this.style.display = 'none';
-      tutupPassword.style.display = 'block';
-    })
-
-    tutupPassword.addEventListener('click', function () {
-      password.setAttribute('type', 'password');
-      this.style.display = 'none';
-      lihatPassword.style.display = 'block';
-    })
+      togglePassword.addEventListener("click", function () {
+        // toggle the type attribute
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        // toggle the icon
+        this.classList.toggle("fa-eye-slash");
+      });
   </script>
 </body>
 </html>
