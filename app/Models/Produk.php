@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function kategori() {
+    return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
+  }
 }
