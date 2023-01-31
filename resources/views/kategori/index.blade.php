@@ -26,7 +26,6 @@
     <div class="row">
       <!-- Left col -->
       <div class="col-md-12">
-        <!-- TABLE: LATEST ORDERS -->
         <div class="card">
           <div class="card-header border-transparent">
             <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-plus"></i></a>
