@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class KategoriController extends Controller
 {
@@ -21,6 +22,15 @@ class KategoriController extends Controller
   {
     $kategori = new Kategori;
     $kategori->nama = $request->nama;
+
+    if($request->hasFile('gambar')) {
+      $file = $request->file('gambar');
+      $extension = $file->getClientOriginalExtension();
+      $filename = time() . "." . $extension;
+      $file->move('img_kategori/', $filename);
+      $kategori->gambar = $filename;
+    }
+
     $kategori->save();
 
     return redirect()->route('kategori');
@@ -35,6 +45,18 @@ class KategoriController extends Controller
   {
     $kategori = Kategori::find($id);
     $kategori->nama = $request->nama;
+
+    if($request->hasFile('gambar')) {
+      if (file_exists("img_kategori/" . $kategori->gambar)) {
+        File::delete("img_kategori/" . $kategori->gambar);
+      }
+      $file = $request->file('gambar');
+      $extension = $file->getClientOriginalExtension();
+      $filename = time() . "." . $extension;
+      $file->move('img_kategori/', $filename);
+      $kategori->gambar = $filename;
+    }
+
     $kategori->save();
 
     return redirect()->route('kategori');
@@ -42,6 +64,11 @@ class KategoriController extends Controller
   public function delete(Request $request)
   {
     $kategori = Kategori::find($request->id);
+
+    if (file_exists("img_kategori/" . $kategori->gambar)) {
+      File::delete("img_kategori/" . $kategori->gambar);
+    }
+
     $kategori->delete();
 
     return redirect()->route('kategori');

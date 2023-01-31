@@ -27,12 +27,22 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <form action="{{ route('kategori.update', [$kategori->id]) }}" method="POST">
+            <form action="{{ route('kategori.update', [$kategori->id]) }}" method="POST" enctype="multipart/form-data">
               @csrf
               @method('put')
-              <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama kategori" value="{{ $kategori->nama }}" required>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama kategori" value="{{ $kategori->nama }}" required>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="gambar">Gambar</label>
+                    <input type="file" name="gambar" id="gambar" class="form-control">
+                  </div>
+                </div>
               </div>
               <button class="btn btn-primary"><i class="fa fa-save"></i> Perbaharui</button>
             </form>

@@ -27,11 +27,21 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <form action="{{ route('kategori.store') }}" method="POST">
+            <form action="{{ route('kategori.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
-              <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama kategori" required>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama kategori" required>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="gambar">Gambar</label>
+                    <input type="file" name="gambar" id="gambar" class="form-control" required>
+                  </div>
+                </div>
               </div>
               <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
             </form>

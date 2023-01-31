@@ -38,6 +38,7 @@
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
+                  <th>Gambar</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -46,6 +47,7 @@
                     <tr>
                       <td>{{ $key + 1 }}</td>
                       <td>{{ $item->nama }}</td>
+                      <td><img src="{{ asset('img_kategori/' . $item->gambar) }}" alt="" style="max-width: 100px;"></td>
                       <td>
                         <a href="{{ route('kategori.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-times"></i></button>
