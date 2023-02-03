@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('style')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+@endsection
+
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -34,7 +41,7 @@
           <!-- /.card-header -->
           <div class="card-body p-0">
             <div class="table-responsive">
-              <table class="table m-0">
+              <table id="tabel-produk" class="table m-0">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -101,6 +108,14 @@
 @endsection
 
 @section('script')
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
 <script>
   $(document).ready(function() {
     $(document).on('click', '.btn-delete', function (e) {
@@ -111,5 +126,16 @@
       $('#modal-danger').modal('show');
     })
   })
+
+  // datatable
+  $('#tabel-produk').DataTable({
+    "paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+  });
 </script>
 @endsection
