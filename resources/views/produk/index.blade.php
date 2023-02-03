@@ -56,7 +56,7 @@
                           {{ $item->kategori->nama }}
                         @endif
                       </td>
-                      <td><img src="{{ asset('img_produk/' . $item->gambar) }}" alt="" style="max-width: 100px;"></td>
+                      <td><img src="{{ $item->gambar }}" alt="" style="max-width: 100px;"></td>
                       <td>
                         <a href="{{ route('produk.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-times"></i></button>
