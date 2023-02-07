@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaraPesanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
@@ -51,4 +52,19 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('slide/{id}/edit', [SlideController::class, 'edit'])->name('slide.edit');
   Route::put('slide/{id}/update', [SlideController::class, 'update'])->name('slide.update');
   Route::post('slide/delete', [SlideController::class, 'delete'])->name('slide.delete');
+
+  // cara_pesan
+  Route::get('cara_pesan', [CaraPesanController::class, 'index'])->name('cara_pesan');
+  Route::get('cara_pesan/create', [CaraPesanController::class, 'create'])->name('cara_pesan.create');
+  Route::post('cara_pesan/store', [CaraPesanController::class, 'store'])->name('cara_pesan.store');
+  Route::get('cara_pesan/{id}/edit', [CaraPesanController::class, 'edit'])->name('cara_pesan.edit');
+  Route::put('cara_pesan/{id}/update', [CaraPesanController::class, 'update'])->name('cara_pesan.update');
+  Route::post('cara_pesan/delete', [CaraPesanController::class, 'delete'])->name('cara_pesan.delete');
+
+  // cara pesan gambar
+  Route::get('cara_pesan_gambar/create', [CaraPesanController::class, 'createGambar'])->name('cara_pesan_gambar.create');
+  Route::post('cara_pesan_gambar/store', [CaraPesanController::class, 'storeGambar'])->name('cara_pesan_gambar.store');
+  Route::get('cara_pesan_gambar/{id}/edit', [CaraPesanController::class, 'editGambar'])->name('cara_pesan_gambar.edit');
+  Route::put('cara_pesan_gambar/{id}/update', [CaraPesanController::class, 'updateGambar'])->name('cara_pesan_gambar.update');
+  Route::post('cara_pesan_gambar/delete', [CaraPesanController::class, 'deleteGambar'])->name('cara_pesan_gambar.delete');
 });

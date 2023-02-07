@@ -115,6 +115,12 @@
                 <p>Slide</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('cara_pesan') }}" class="nav-link {{ request()->is(['cara_pesan', 'cara_pesan/*']) ? 'active' : '' }}">
+                <i class="nav-icon fa fa-edit"></i>
+                <p>Cara Pesan</p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
