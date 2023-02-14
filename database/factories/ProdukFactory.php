@@ -17,10 +17,11 @@ class ProdukFactory extends Factory
     public function definition()
     {
         return [
-          'nama' => fake()->name(),
+          'nama' => fake()->sentence(),
           'harga' => fake()->randomNumber(6, true),
           'kategori_id' => fake()->randomNumber(1, true),
-          'gambar' => fake()->imageUrl($width=600, $height=600),
+          'gambar' => fake()->imageUrl($width=640, $height=360),
+          'deskripsi' => fake()->paragraph(),
         ];
     }
 }
