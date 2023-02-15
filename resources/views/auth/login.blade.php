@@ -7,11 +7,11 @@
   <title>Login</title>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('tema/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('template/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('tema/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('tema/dist/css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition login-page">
   <div class="login-box">
@@ -64,11 +64,11 @@
   <!-- /.login-box -->
   
   <!-- jQuery -->
-  <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('tema/plugins/jquery/jquery.min.js') }}"></script>
   <!-- Bootstrap 4 -->
-  <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('tema/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- AdminLTE App -->
-  <script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
+  <script src="{{ asset('tema/dist/js/adminlte.min.js') }}"></script>
 
   <script>
     const togglePassword = document.querySelector("#togglePassword");

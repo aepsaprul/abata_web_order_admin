@@ -7,11 +7,11 @@
   <title>Abata</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('tema/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('tema/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('tema/dist/css/adminlte.min.css') }}">
 
   @yield('style')
 </head>
@@ -87,7 +87,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="{{ asset('template/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('tema/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block">Admin</a>
@@ -121,6 +121,25 @@
                 <p>Cara Pesan</p>
               </a>
             </li>
+            <li class="nav-item {{ request()->is(['template', 'template/*', 'template_detail', 'template_detail/*']) ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link {{ request()->is(['template', 'template/*', 'template_detail', 'template_detail/*']) ? 'active' : '' }} text-capitalize">
+                <i class="nav-icon fa fa-vector-square text-center mr-2" style="width: 30px;"></i> <p>Template<i class="right fas fa-angle-left"></i></p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('template') }}" class="nav-link {{ request()->is(['template', 'template/*']) ? 'active' : '' }} text-capitalize">
+                    <i class="fas fa-angle-right nav-icon"></i> 
+                    <p>Template</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('template_detail') }}" class="nav-link {{ request()->is(['template_detail', 'template_detail/*']) ? 'active' : '' }} text-capitalize">
+                    <i class="fas fa-angle-right nav-icon"></i> 
+                    <p>Detail</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -146,13 +165,13 @@
 
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
-  <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('tema/plugins/jquery/jquery.min.js') }}"></script>
   <!-- Bootstrap -->
-  <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('tema/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- overlayScrollbars -->
-  <script src="{{ asset('template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+  <script src="{{ asset('tema/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
   <!-- AdminLTE App -->
-  <script src="{{ asset('template/dist/js/adminlte.js') }}"></script>
+  <script src="{{ asset('tema/dist/js/adminlte.js') }}"></script>
 
   @yield('script')
 </body>

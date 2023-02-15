@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,4 +68,20 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('cara_pesan_gambar/{id}/edit', [CaraPesanController::class, 'editGambar'])->name('cara_pesan_gambar.edit');
   Route::put('cara_pesan_gambar/{id}/update', [CaraPesanController::class, 'updateGambar'])->name('cara_pesan_gambar.update');
   Route::post('cara_pesan_gambar/delete', [CaraPesanController::class, 'deleteGambar'])->name('cara_pesan_gambar.delete');
+
+  // template
+  Route::get('template', [TemplateController::class, 'index'])->name('template');
+  Route::get('template/create', [TemplateController::class, 'create'])->name('template.create');
+  Route::post('template/store', [TemplateController::class, 'store'])->name('template.store');
+  Route::get('template/{id}/edit', [TemplateController::class, 'edit'])->name('template.edit');
+  Route::put('template/{id}/update', [TemplateController::class, 'update'])->name('template.update');
+  Route::post('template/delete', [TemplateController::class, 'delete'])->name('template.delete');
+
+  // template detail
+  Route::get('template_detail', [TemplateController::class, 'indexDetail'])->name('template_detail');
+  Route::get('template_detail/create', [TemplateController::class, 'createDetail'])->name('template_detail.create');
+  Route::post('template_detail/store', [TemplateController::class, 'storeDetail'])->name('template_detail.store');
+  Route::get('template_detail/{id}/edit', [TemplateController::class, 'editDetail'])->name('template_detail.edit');
+  Route::put('template_detail/{id}/update', [TemplateController::class, 'updateDetail'])->name('template_detail.update');
+  Route::post('template_detail/delete', [TemplateController::class, 'deleteDetail'])->name('template_detail.delete');
 });
