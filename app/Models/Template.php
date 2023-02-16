@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Template extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function detail() {
+    return $this->hasMany(TemplateDetail::class, 'template_id', 'id');
+  }
 }

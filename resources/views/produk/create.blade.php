@@ -59,7 +59,29 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+              <div style="display: grid; grid-template-columns: auto auto auto auto auto; gap: 10px;">
+                @foreach ($template as $item)
+                  <div style="width: 100%; border: 2px solid #ccc; padding: 5px; border-radius: 5px;">
+                    <div>
+                      <label for="template_head_{{ $item->id }}">
+                        <input type="checkbox" name="template_head" id="template_head_{{ $item->id }}" style="width: 14px; height: 17px; margin-right: 5px;">
+                        <span style="font-size: 14px;">{{ $item->nama }}</span>
+                      </label>
+                    </div>
+                    @if ($item->detail)
+                      @foreach ($item->detail as $item_detail)
+                        <div style="border-bottom: 1px solid #ccc;">
+                          <label for="template_detail_{{ $item_detail->id }}" style="font-weight: normal;">
+                            <input type="checkbox" name="template_detail" id="template_detail_{{ $item_detail->id }}" style="width: 14px; height: 14px; margin-right: 5px;">
+                            <span style="font-size: 12px;">{{ $item_detail->nama }}</span>
+                          </label>
+                        </div>
+                      @endforeach
+                    @endif
+                  </div>
+                @endforeach
+              </div>
+              <button class="btn btn-primary mt-3"><i class="fa fa-save"></i> Simpan</button>
             </form>
           </div>
         </div>

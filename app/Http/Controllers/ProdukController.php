@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Produk;
+use App\Models\Template;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -19,8 +20,12 @@ class ProdukController extends Controller
   public function create()
   {
     $kategori = Kategori::get();
+    $template = Template::with('detail')->get();
 
-    return view('produk.create', ['kategori' => $kategori]);
+    return view('produk.create', [
+      'kategori' => $kategori,
+      'template' => $template
+    ]);
   }
   public function store(Request $request)
   {
