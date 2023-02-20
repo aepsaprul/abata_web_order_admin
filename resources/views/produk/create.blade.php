@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('style')
+<!-- summernote -->
+<link rel="stylesheet" href="{{ asset('tema/plugins/summernote/summernote-bs4.min.css') }}">
+@endsection
+
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -59,20 +64,30 @@
                   </div>
                 </div>
               </div>
+              <div>
+                <div class="form-group">
+                  <label for="deskripsi_singkat">Deskripsi Singkat</label>
+                  <textarea name="deskripsi_singkat" id="deskripsi_singkat" rows="2" class="form-control"></textarea>
+                </div>
+              </div>
+              <div>
+                <label for="deskripsi">Deskripsi Produk</label>
+                <textarea name="deskripsi" id="summernote"></textarea>
+              </div>
               <div style="display: grid; grid-template-columns: auto auto auto auto auto; gap: 10px;">
                 @foreach ($template as $item)
                   <div style="width: 100%; border: 2px solid #ccc; padding: 5px; border-radius: 5px;">
-                    <div>
+                    <div style="border-bottom: 1px solid #ccc;">
                       <label for="template_head_{{ $item->id }}">
-                        <input type="checkbox" name="template_head" id="template_head_{{ $item->id }}" style="width: 14px; height: 17px; margin-right: 5px;">
+                        <input type="checkbox" name="template_head[]" id="template_head_{{ $item->id }}" class="template_head" data-id="{{ $item->id }}" style="width: 14px; height: 17px; margin-right: 5px;" value="{{ $item->id }}">
                         <span style="font-size: 14px;">{{ $item->nama }}</span>
                       </label>
                     </div>
                     @if ($item->detail)
-                      @foreach ($item->detail as $item_detail)
-                        <div style="border-bottom: 1px solid #ccc;">
-                          <label for="template_detail_{{ $item_detail->id }}" style="font-weight: normal;">
-                            <input type="checkbox" name="template_detail" id="template_detail_{{ $item_detail->id }}" style="width: 14px; height: 14px; margin-right: 5px;">
+                      @foreach ($item->detail as $key => $item_detail)
+                        <div>
+                          <label for="template_detail_{{ $item->id }}_{{ $key }}" style="font-weight: normal;">
+                            <input type="checkbox" name="template_detail_{{ $item->id }}[]" id="template_detail_{{ $item->id }}_{{ $key }}" style="width: 14px; height: 14px; margin-right: 5px;" value="{{ $item_detail->id }}">
                             <span style="font-size: 12px;">{{ $item_detail->nama }}</span>
                           </label>
                         </div>
@@ -93,4 +108,18 @@
   </div><!--/. container-fluid -->
 </section>
 <!-- /.content -->
+@endsection
+
+@section('script')
+<!-- Summernote -->
+<script src="{{ asset('tema/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
+<script>
+  $(document).ready(function () {
+    $(function () {
+      // Summernote
+      $('#summernote').summernote()
+    })
+  })
+</script>
 @endsection

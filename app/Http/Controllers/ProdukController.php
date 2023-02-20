@@ -29,22 +29,25 @@ class ProdukController extends Controller
   }
   public function store(Request $request)
   {
-    $produk = new Produk;
-    $produk->nama = $request->nama;
-    $produk->harga = $request->harga;
-    $produk->kategori_id = $request->kategori_id;
+    dd($request);
+    // $produk = new Produk;
+    // $produk->nama = $request->nama;
+    // $produk->harga = $request->harga;
+    // $produk->kategori_id = $request->kategori_id;
+    // $produk->deskripsi_singkat = $request->deskripsi_singkat;
+    // $produk->deskripsi = $request->deskripsi;
     
-    if($request->hasFile('gambar')) {
-      $file = $request->file('gambar');
-      $extension = $file->getClientOriginalExtension();
-      $filename = time() . "." . $extension;
-      $file->move('img_produk/', $filename);
-      $produk->gambar = $filename;
-    }
+    // if($request->hasFile('gambar')) {
+    //   $file = $request->file('gambar');
+    //   $extension = $file->getClientOriginalExtension();
+    //   $filename = time() . "." . $extension;
+    //   $file->move('img_produk/', $filename);
+    //   $produk->gambar = $filename;
+    // }
 
-    $produk->save();
+    // $produk->save();
 
-    return redirect()->route('produk');
+    // return redirect()->route('produk');
   }
   public function edit($id)
   {
