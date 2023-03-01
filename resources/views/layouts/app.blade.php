@@ -99,31 +99,32 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="{{ route('kategori') }}" class="nav-link {{ request()->is(['kategori', 'kategori/*']) ? 'active' : '' }}">
-                <i class="nav-icon far fa-folder"></i>
+                <i class="nav-icon far fa-folder" style="width: 30px; bpadding-top: 2px; padding-bottom: 2px;border: 1px solid gray ;"></i>
                 <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('produk') }}" class="nav-link {{ request()->is(['produk', 'produk/*']) ? 'active' : '' }}">
-                <i class="nav-icon fas fa-boxes"></i>
+                <i class="nav-icon fas fa-boxes" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
                 <p>Produk</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('slide') }}" class="nav-link {{ request()->is(['slide', 'slide/*']) ? 'active' : '' }}">
-                <i class="nav-icon far fa-image"></i>
+                <i class="nav-icon far fa-image" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
                 <p>Slide</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('cara_pesan') }}" class="nav-link {{ request()->is(['cara_pesan', 'cara_pesan/*']) ? 'active' : '' }}">
-                <i class="nav-icon fa fa-edit"></i>
+                <i class="nav-icon fa fa-edit" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
                 <p>Cara Pesan</p>
               </a>
             </li>
             <li class="nav-item {{ request()->is(['template', 'template/*', 'template_detail', 'template_detail/*']) ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ request()->is(['template', 'template/*', 'template_detail', 'template_detail/*']) ? 'active' : '' }} text-capitalize">
-                <i class="nav-icon fa fa-vector-square text-center mr-2" style="width: 30px;"></i> <p>Template<i class="right fas fa-angle-left"></i></p>
+                <i class="nav-icon fa fa-vector-square text-center"  style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i> 
+                <p>Template<i class="right fas fa-angle-left"></i></p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -139,6 +140,12 @@
                   </a>
                 </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('ekspedisi') }}" class="nav-link {{ request()->is(['ekspedisi', 'ekspedisi/*']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-truck" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <p>Pengiriman</p>
+              </a>
             </li>
           </ul>
         </nav>

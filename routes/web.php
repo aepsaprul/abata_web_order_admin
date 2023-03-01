@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CaraPesanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TemplateController;
@@ -84,4 +86,12 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('template_detail/{id}/edit', [TemplateController::class, 'editDetail'])->name('template_detail.edit');
   Route::put('template_detail/{id}/update', [TemplateController::class, 'updateDetail'])->name('template_detail.update');
   Route::post('template_detail/delete', [TemplateController::class, 'deleteDetail'])->name('template_detail.delete');
+
+  // ekspedisi
+  Route::get('ekspedisi', [EkspedisiController::class, 'index'])->name('ekspedisi');
+  Route::get('ekspedisi/create', [EkspedisiController::class, 'create'])->name('ekspedisi.create');
+  Route::post('ekspedisi/store', [EkspedisiController::class, 'store'])->name('ekspedisi.store');
+  Route::get('ekspedisi/{id}/edit', [EkspedisiController::class, 'edit'])->name('ekspedisi.edit');
+  Route::put('ekspedisi/{id}/update', [EkspedisiController::class, 'update'])->name('ekspedisi.update');
+  Route::post('ekspedisi/delete', [EkspedisiController::class, 'delete'])->name('ekspedisi.delete');
 });
