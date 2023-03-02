@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
@@ -94,4 +95,12 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('ekspedisi/{id}/edit', [EkspedisiController::class, 'edit'])->name('ekspedisi.edit');
   Route::put('ekspedisi/{id}/update', [EkspedisiController::class, 'update'])->name('ekspedisi.update');
   Route::post('ekspedisi/delete', [EkspedisiController::class, 'delete'])->name('ekspedisi.delete');
+
+  // rekening
+  Route::get('rekening', [RekeningController::class, 'index'])->name('rekening');
+  Route::get('rekening/create', [RekeningController::class, 'create'])->name('rekening.create');
+  Route::post('rekening/store', [RekeningController::class, 'store'])->name('rekening.store');
+  Route::get('rekening/{id}/edit', [RekeningController::class, 'edit'])->name('rekening.edit');
+  Route::put('rekening/{id}/update', [RekeningController::class, 'update'])->name('rekening.update');
+  Route::post('rekening/delete', [RekeningController::class, 'delete'])->name('rekening.delete');
 });
