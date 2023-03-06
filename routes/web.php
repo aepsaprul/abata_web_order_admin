@@ -48,6 +48,7 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('produk/{id}/edit', [ProdukController::class, 'edit'])->name('produk.edit');
   Route::put('produk/{id}/update', [ProdukController::class, 'update'])->name('produk.update');
   Route::post('produk/delete', [ProdukController::class, 'delete'])->name('produk.delete');
+  Route::get('produk/template', [ProdukController::class, 'template'])->name('produk.template');
 
   // slide
   Route::get('slide', [SlideController::class, 'index'])->name('slide');

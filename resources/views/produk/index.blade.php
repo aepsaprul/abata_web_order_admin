@@ -2,9 +2,9 @@
 
 @section('style')
 <!-- DataTables -->
-<link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('tema/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('tema/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('tema/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -39,9 +39,9 @@
             <a href="{{ route('produk.create') }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-plus"></i></a>
           </div>
           <!-- /.card-header -->
-          <div class="card-body p-0">
+          <div class="card-body">
             <div class="table-responsive">
-              <table id="tabel-produk" class="table m-0">
+              <table id="tabel-produk" class="table">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -63,7 +63,7 @@
                           {{ $item->kategori->nama }}
                         @endif
                       </td>
-                      <td><img src="{{ $item->gambar }}" alt="" style="max-width: 100px;"></td>
+                      <td><img src="{{ asset('img_produk/' . $item->gambar) }}" alt="" style="max-width: 100px;"></td>
                       <td>
                         <a href="{{ route('produk.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-times"></i></button>
@@ -109,12 +109,12 @@
 
 @section('script')
 <!-- DataTables  & Plugins -->
-<script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
 <script>
   $(document).ready(function() {

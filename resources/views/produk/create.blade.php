@@ -67,28 +67,49 @@
               <div>
                 <div class="form-group">
                   <label for="deskripsi_singkat">Deskripsi Singkat</label>
-                  <textarea name="deskripsi_singkat" id="deskripsi_singkat" rows="2" class="form-control"></textarea>
+                  <textarea name="deskripsi_singkat" id="deskripsi_singkat" rows="2" class="form-control" placeholder="Deskripsi singkat"></textarea>
                 </div>
               </div>
               <div>
                 <label for="deskripsi">Deskripsi Produk</label>
                 <textarea name="deskripsi" id="summernote"></textarea>
               </div>
+
+              {{-- data hidden --}}
+              <input type="hidden" name="template_total" id="template_total" value="{{ count($template) }}">
+
               <div style="display: grid; grid-template-columns: auto auto auto auto auto; gap: 10px;">
-                @foreach ($template as $item)
+                @foreach ($template as $key => $item)
                   <div style="width: 100%; border: 2px solid #ccc; padding: 5px; border-radius: 5px;">
                     <div style="border-bottom: 1px solid #ccc;">
-                      <label for="template_head_{{ $item->id }}">
-                        <input type="checkbox" name="template_head[]" id="template_head_{{ $item->id }}" class="template_head" data-id="{{ $item->id }}" style="width: 14px; height: 17px; margin-right: 5px;" value="{{ $item->id }}">
-                        <span style="font-size: 14px;">{{ $item->nama }}</span>
+                      <label for="template_head_{{ $key }}">
+                        <input 
+                          type="checkbox" 
+                          name="template_head[]" 
+                          id="template_head_{{ $key }}" 
+                          class="template_head" 
+                          data-id="{{ $item->id }}" 
+                          style="width: 14px; height: 17px; margin-right: 5px;" 
+                          value="{{ $item->id }}">
+                          <span style="font-size: 14px;">{{ $item->nama }}</span>
                       </label>
                     </div>
+
+                    {{-- data hidden --}}
+                    <input type="hidden" name="template_detail_total" id="template_detail_total_{{ $key }}" value="{{ count($item->detail) }}">
+
                     @if ($item->detail)
                       @foreach ($item->detail as $key => $item_detail)
                         <div>
                           <label for="template_detail_{{ $item->id }}_{{ $key }}" style="font-weight: normal;">
-                            <input type="checkbox" name="template_detail_{{ $item->id }}[]" id="template_detail_{{ $item->id }}_{{ $key }}" style="width: 14px; height: 14px; margin-right: 5px;" value="{{ $item_detail->id }}">
-                            <span style="font-size: 12px;">{{ $item_detail->nama }}</span>
+                            <input 
+                              type="checkbox" 
+                              name="template_detail[]" 
+                              id="template_detail_{{ $item->id }}_{{ $key }}" 
+                              class="template_detail_{{ $key }}_{{ $item->id }}" 
+                              style="width: 14px; height: 14px; margin-right: 5px;" 
+                              value="{{ $item_detail->id }}">
+                              <span style="font-size: 12px;">{{ $item_detail->nama }}</span>
                           </label>
                         </div>
                       @endforeach
@@ -120,6 +141,28 @@
       // Summernote
       $('#summernote').summernote()
     })
+
+    // template
+    const template_total = $('#template_total').val();
+    $('input[name="template_detail[]"]').prop('disabled', true);
+
+    for (let i = 0; i < template_total; i++) { // loop untuk check template head
+      const template_head = $('#template_head_' + i);
+      template_head.on('change', function () {
+        const val = $(this).val();
+        const template_detail_total = $('#template_detail_total_' + i).val();
+        
+        if (template_head.is(':checked')) { // jika template head check
+          for (let i_detail = 0; i_detail < template_detail_total; i_detail++) { // loop untuk mengaktifkan template detail
+            $('.template_detail_' + i_detail + '_' + val).prop('disabled', false);            
+          }
+        } else { // jika template head uncheck
+          for (let i_detail = 0; i_detail < template_detail_total; i_detail++) { // loop untuk mengnonaktifkan template detail
+            $('.template_detail_' + i_detail + '_' + val).prop('disabled', true);            
+          }
+        }
+      })
+    }
   })
 </script>
 @endsection

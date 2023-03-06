@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Abata</title>
+  <link rel="shortcut icon" href="{{ asset('img/logo-daun.png') }}" type="image/x-icon">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('tema/plugins/fontawesome-free/css/all.min.css') }}">
