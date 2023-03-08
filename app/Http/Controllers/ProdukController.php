@@ -35,6 +35,8 @@ class ProdukController extends Controller
     $produk->nama = $request->nama;
     $produk->harga = $request->harga;
     $produk->kategori_id = $request->kategori_id;
+    $produk->min_beli = $request->min_beli;
+    $produk->satuan = $request->satuan;
     $produk->deskripsi_singkat = $request->deskripsi_singkat;
     $produk->deskripsi = $request->deskripsi;
     
@@ -92,6 +94,8 @@ class ProdukController extends Controller
     $produk->nama = $request->nama;
     $produk->harga = $request->harga;
     $produk->kategori_id = $request->kategori_id;
+    $produk->min_beli = $request->min_beli;
+    $produk->satuan = $request->satuan;
     $produk->deskripsi_singkat = $request->deskripsi_singkat;
     $produk->deskripsi = $request->deskripsi;
 

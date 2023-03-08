@@ -11,7 +11,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Produk</h1>
+        <h1 class="m-0">Edit Produk</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -65,10 +65,29 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <div class="form-group">
-                  <label for="deskripsi_singkat">Deskripsi Singkat</label>
-                  <textarea name="deskripsi_singkat" id="deskripsi_singkat" rows="2" class="form-control" placeholder="Deskripsi singkat">{{ $produk->deskripsi_singkat }}</textarea>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="deskripsi_singkat">Deskripsi Singkat</label>
+                    <textarea name="deskripsi_singkat" id="deskripsi_singkat" rows="2" class="form-control" placeholder="Deskripsi singkat">{{ $produk->deskripsi_singkat }}</textarea>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="min_beli">Minimal Pembelian</label>
+                    <input type="number" name="min_beli" id="min_beli" class="form-control" value="{{ $produk->min_beli }}" required>                    
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="satuan">Satuan</label>
+                    <select name="satuan" id="satuan" class="form-control">
+                      <option value="pcs" {{ $produk->satuan == "pcs" ? "selected" : "" }}>pcs</option>
+                      <option value="lembar" {{ $produk->satuan == "lembar" ? "selected" : "" }}>lembar</option>
+                      <option value="rim" {{ $produk->satuan == "rim" ? "selected" : "" }}>rim</option>
+                      <option value="box" {{ $produk->satuan == "box" ? "selected" : "" }}>box</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <div>
