@@ -7,6 +7,8 @@
   <title>Abata</title>
   <link rel="shortcut icon" href="{{ asset('img/logo-daun.png') }}" type="image/x-icon">
 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('tema/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- overlayScrollbars -->
@@ -117,6 +119,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ route('transaksi') }}" class="nav-link {{ request()->is(['transaksi', 'transaksi/*']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-random" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <p>Transaksi</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('cara_pesan') }}" class="nav-link {{ request()->is(['cara_pesan', 'cara_pesan/*']) ? 'active' : '' }}">
                 <i class="nav-icon fa fa-edit" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
                 <p>Cara Pesan</p>
@@ -186,6 +194,20 @@
   <script src="{{ asset('tema/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
   <!-- AdminLTE App -->
   <script src="{{ asset('tema/dist/js/adminlte.js') }}"></script>
+
+  <script>
+    function afRupiah(nominal) {
+      var	number_string = nominal.toString(),
+        sisa 	= number_string.length % 3,
+        rupiah 	= number_string.substr(0, sisa),
+        ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+      if (ribuan) {
+        let separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+      return rupiah;
+    }
+  </script>
 
   @yield('script')
 </body>

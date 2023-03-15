@@ -10,6 +10,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,4 +105,12 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('rekening/{id}/edit', [RekeningController::class, 'edit'])->name('rekening.edit');
   Route::put('rekening/{id}/update', [RekeningController::class, 'update'])->name('rekening.update');
   Route::post('rekening/delete', [RekeningController::class, 'delete'])->name('rekening.delete');
+
+  // transaksi
+  Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+  Route::get('transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+  Route::get('transaksi/{id}/show', [TransaksiController::class, 'show'])->name('transaksi.show');
+  Route::get('transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+  Route::put('transaksi/{id}/update', [TransaksiController::class, 'update'])->name('transaksi.update');
+  Route::post('transaksi/delete', [TransaksiController::class, 'delete'])->name('transaksi.delete');
 });
