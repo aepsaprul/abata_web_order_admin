@@ -16,11 +16,15 @@ class DatabaseSeeder extends Seeder
     {
       // \App\Models\User::factory(10)->create();
       // \App\Models\Transaksi::factory(10)->create();
-      \App\Models\Produk::factory(30)->create();
+      // \App\Models\Produk::factory(30)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+      // $this->call(ProvincesTableSeeder::class);
+      $this->call(KabupatenTableSeeder::class);
+
     }
 }
