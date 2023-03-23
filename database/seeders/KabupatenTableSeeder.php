@@ -15,7 +15,7 @@ class KabupatenTableSeeder extends Seeder
      */
     public function run()
     {
-      $url_city = "https://api.rajaongkir.com/starter/city?key=b26ad9c38f1ea6354da405ce736b0371";
+      $url_city = "https://pro.rajaongkir.com/api/city?key=06f5c93c31ef48c91c6260c011014d37";
       $json_str = file_get_contents($url_city);
       $json_obj = json_decode($json_str);
       $cities = [];
@@ -23,11 +23,12 @@ class KabupatenTableSeeder extends Seeder
         $cities[] = [
           'id' => $city->city_id,
           'provinsi_id' => $city->province_id,
-          'kabupaten' => $city->city_name,
+          'provinsi' => $city->province,
           'type' => $city->type,
+          'kabupaten' => $city->city_name,
           'kodepos' => $city->postal_code,
         ];
       }
-      DB::table('wilayah_kabupatens')->insert($cities);
+      DB::table('wil_kabupatens')->insert($cities);
     }
 }

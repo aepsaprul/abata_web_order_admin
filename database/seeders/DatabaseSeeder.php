@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
       // $this->call(ProvincesTableSeeder::class);
-      $this->call(KabupatenTableSeeder::class);
+      // $this->call(KabupatenTableSeeder::class);
+      // $this->call(DistrictTableSeeder::class);
 
     }
 }

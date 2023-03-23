@@ -15,16 +15,16 @@ class ProvincesTableSeeder extends Seeder
      */
     public function run()
     {
-      $url_province = "https://api.rajaongkir.com/starter/province?key=b26ad9c38f1ea6354da405ce736b0371";
+      $url_province = "https://pro.rajaongkir.com/api/province?key=06f5c93c31ef48c91c6260c011014d37";
       $json_str = file_get_contents($url_province);
       $json_obj = json_decode($json_str);
       $provinces = [];
       foreach ($json_obj->rajaongkir->results as $province) {
         $provinces[] = [
           'id' => $province->province_id,
-          'province' => $province->province
+          'provinsi' => $province->province
         ];
       }
-      DB::table('wilayah_provinsis')->insert($provinces);
+      DB::table('wil_provinsis')->insert($provinces);
     }
 }
