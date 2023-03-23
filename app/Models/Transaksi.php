@@ -13,6 +13,9 @@ class Transaksi extends Model
   public function dataStatus() {
     return $this->belongsTo(Status::class, 'status', 'id');
   }
+  public function dataTransaksiStatus() {
+    return $this->hasMany(TransaksiStatus::class, 'transaksi_id', 'id');
+  }
   public function dataCustomer() {
     return $this->belongsTo(Customer::class, 'customer_id', 'id');
   }

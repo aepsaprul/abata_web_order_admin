@@ -6,6 +6,7 @@ use App\Models\Keranjang;
 use App\Models\Status;
 use App\Models\Transaksi;
 use App\Models\TransaksiStatus;
+use App\Models\KonfirmasiBayar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,12 +23,16 @@ class TransaksiController extends Controller
     $transaksi = Transaksi::with([
         'dataCustomer',
         'dataStatus',
+        'dataTransaksiStatus.dataStatus',
         'dataRekening',
         'dataProvinsi',
         'dataKabupaten',
         'dataKecamatan',
         'dataKeranjang',
-        'dataKeranjang.produk'
+        'dataKeranjang.produk',
+        'dataKeranjang.dataKeranjangTemplate',
+        'dataKeranjang.dataKeranjangTemplate.dataTemplate',
+        'dataKeranjang.dataKeranjangTemplate.dataTemplateDetail'
       ])
       ->find($id);
 
@@ -46,9 +51,14 @@ class TransaksiController extends Controller
         $query->where('transaksi_id', $id);
       })
       ->get();
+    
+    $transaksi = Transaksi::with(['dataRekening'])->find($id);
+    $konfirmasi = KonfirmasiBayar::where('transaksi_id', $id)->first();
 
     return response()->json([
-      'status' => $status
+      'status' => $status,
+      'transaksi' => $transaksi,
+      'konfirmasi' => $konfirmasi
     ]);
   }
   public function update(Request $request, $id)

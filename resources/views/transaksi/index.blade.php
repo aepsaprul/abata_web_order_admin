@@ -52,7 +52,7 @@
                       <td>
                         <span class="text-capitalize {{ $item->status == 6 ? 'bg-success' : 'bg-danger' }} rounded py-1 px-2">{{ $item->dataStatus->nama }}</span> 
                         @if ($item->status == 2 || $item->status == 3 || $item->status == 4 || $item->status == 5)
-                          <a href="#" class="edit" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalEdit">Edit</a>                            
+                          <a href="#" class="edit" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalEdit" style="text-decoration: underline;">Edit</a>                          
                         @endif
                       </td>
                       <td>
@@ -153,6 +153,7 @@
         url: url,
         type: "get",
         success: function (response) {
+          console.log(response)
           const transaksi = response.transaksi;
 
           const tgl = transaksi.created_at; // tanggal dari DB
@@ -165,7 +166,33 @@
               <div>${transaksi.kode}</div>
               <div>${tgl_indo}</div>
             </div>
-            <div class="my-2 p-2 border rounded">
+            <div>
+              <!-- Timelime example  -->
+              <div class="row">
+                <div class="col-md-12 mt-2">
+                  <!-- The time line -->
+                  <div class="timeline">
+                    <!-- timeline item -->`;
+                    $.each(transaksi.data_transaksi_status, function (index_status, item_status) {
+                      val += `
+                      <div>
+                        <i class="fas fa-circle bg-blue"></i>
+                        <div class="timeline-item">
+                          <h3 class="timeline-header">${item_status.data_status.nama}</h3>
+                          <div class="timeline-body">
+                            ${item_status.keterangan}
+                          </div>
+                        </div>
+                      </div>`;
+                    })
+                    val += `
+                    <!-- END timeline item -->
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+            </div>
+            <div class="p-2 border rounded">
               <div class="font-weight-bold border-bottom pb-2">Detail Produk</div>`;
 
               $.each(transaksi.data_keranjang, function (index, item) {
@@ -178,6 +205,11 @@
                         <div class="ml-3">
                           <div class="text-md font-weight-bold">${item.produk.nama}</div>
                           <div class="text-sm">${item.qty} ${item.produk.satuan} x <span class="text-xs">Rp</span> ${afRupiah(item.harga)}</div>
+                          <div style="font-size: 12px;">`;
+                            $.each(item.data_keranjang_template, function (index_keranjang_template, item_keranjang_template) {
+                              val += `${item_keranjang_template.data_template.nama}: ${item_keranjang_template.data_template_detail.nama},`;
+                            })
+                          val += `</div>
                         </div>
                       </div>
                       <div class="mt-2">
@@ -245,6 +277,7 @@
 
     // edit
     $('.edit').on('click', function (e) {
+      e.preventDefault();
       const id = $(this).attr('data-id');
       
       let url = "{{ URL::route('transaksi.edit', ':id') }}";
@@ -265,6 +298,17 @@
             
             val += `
           </select>
+          <div style="display: flex; margin: 20px 0;">
+            <div style="text-transform: capitalize; width: 100px;">${response.transaksi.data_rekening.grup}</div>
+            <div>${response.transaksi.data_rekening.nama}</div>
+          </div>
+          <div style="display: flex; margin: 20px 0;">
+            <div style="width: 100px;">Total Bayar</div>
+            <div>Rp <span style="font-weight: bold;">${afRupiah(response.transaksi.total)}</span></div>
+          </div>
+          <div>
+            <img src="{{ url(env('APP_URL_CLIENT') . '/img_bayar/${response.konfirmasi.gambar}') }}" alt="gambar" style="max-width: 100%;">
+          </div>
           `;
 
           $('.modal-content-edit').html(val);
