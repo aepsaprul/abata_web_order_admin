@@ -162,6 +162,12 @@
                 <p>Rekening</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('promo') }}" class="nav-link {{ request()->is(['promo', 'promo/*']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tags" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <p>Promo</p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

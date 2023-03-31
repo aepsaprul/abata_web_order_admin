@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TemplateController;
@@ -113,4 +114,13 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
   Route::put('transaksi/{id}/update', [TransaksiController::class, 'update'])->name('transaksi.update');
   Route::post('transaksi/delete', [TransaksiController::class, 'delete'])->name('transaksi.delete');
+
+  // promo
+  Route::get('promo', [PromoController::class, 'index'])->name('promo');
+  Route::get('promo/{id}/showProduk', [PromoController::class, 'showProduk'])->name('promo.showProduk');
+  Route::get('promo/create', [PromoController::class, 'create'])->name('promo.create');
+  Route::post('promo/store', [PromoController::class, 'store'])->name('promo.store');
+  Route::get('promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
+  Route::put('promo/{id}/update', [PromoController::class, 'update'])->name('promo.update');
+  Route::post('promo/delete', [PromoController::class, 'delete'])->name('promo.delete');
 });
