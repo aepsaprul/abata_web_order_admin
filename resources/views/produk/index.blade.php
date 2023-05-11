@@ -48,6 +48,7 @@
                   <th>Nama</th>
                   <th>Harga</th>
                   <th>Kategori</th>
+                  <th>Berat</th>
                   <th>Gambar</th>
                   <th>Aksi</th>
                 </tr>
@@ -57,12 +58,13 @@
                     <tr>
                       <td>{{ $key + 1 }}</td>
                       <td>{{ $item->nama }}</td>
-                      <td>{{ $item->harga }}</td>
+                      <td>Rp @currency($item->harga)</td>
                       <td>
                         @if ($item->kategori)
                           {{ $item->kategori->nama }}
                         @endif
                       </td>
+                      <td>@currency($item->berat) gram</td>
                       <td><img src="{{ asset('img_produk/' . $item->gambar) }}" alt="" style="max-width: 100px;"></td>
                       <td>
                         <a href="{{ route('produk.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
@@ -131,7 +133,7 @@
   $('#tabel-produk').DataTable({
     "paging": true,
     "lengthChange": false,
-    "searching": false,
+    "searching": true,
     "ordering": true,
     "info": true,
     "autoWidth": false,

@@ -14,7 +14,7 @@ class TransaksiController extends Controller
 {
   public function index()
   {
-    $transaksi = Transaksi::with('dataStatus')->get();
+    $transaksi = Transaksi::with('dataStatus')->orderBy('id', 'desc')->get();
 
     return view('transaksi.index', ['transaksi' => $transaksi]);
   }
@@ -94,6 +94,15 @@ class TransaksiController extends Controller
   }
   public function delete(Request $request)
   {
-    
+    $transaksi = Transaksi::find($request->id);
+
+    $transaksi_status = TransaksiStatus::where('transaksi_id', $transaksi->id);
+    if ($transaksi_status) {
+      $transaksi_status->delete();
+    }
+
+    $transaksi->delete();
+
+    return redirect()->route('transaksi');
   }
 }

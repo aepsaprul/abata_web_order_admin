@@ -1,0 +1,6 @@
+- berat per gram
+
+update
+- kadaluwarsa
+- notifikasi
+- filter & cari di tabel dashboard

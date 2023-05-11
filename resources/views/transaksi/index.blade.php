@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('style')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('tema/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('tema/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('tema/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+@endsection
+
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -27,14 +34,14 @@
       <!-- Left col -->
       <div class="col-md-12">
         <div class="card">
-          <div class="card-body p-0">
+          <div class="card-body">
             <div class="table-responsive">
-              <table class="table m-0">
+              <table id="tabel-transaksi" class="table m-0">
                 <thead>
                 <tr>
                   <th>No</th>
                   <th>Kode</th>
-                  <th>Penerima</th>
+                  <th>Customer</th>
                   <th>Total</th>
                   <th>Ekspedisi</th>
                   <th>Status</th>
@@ -47,7 +54,7 @@
                       <td>{{ $key + 1 }}</td>
                       <td><a href="#" class="detail" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalDetail">{{ $item->kode }}</a></td>
                       <td>{{ $item->penerima }}</td>
-                      <td>Rp @currency($item->total)</td>
+                      <td class="text-right">Rp @currency($item->total)</td>
                       <td>{{ $item->ekspedisi }}</td>
                       <td>
                         <span class="text-capitalize {{ $item->status == 6 ? 'bg-success' : 'bg-danger' }} rounded py-1 px-2">{{ $item->dataStatus->nama }}</span> 
@@ -56,7 +63,7 @@
                         @endif
                       </td>
                       <td>
-                        <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-trash-alt"></i></button>
                       </td>
                     </tr>                      
                   @endforeach
@@ -133,12 +140,31 @@
 @endsection
 
 @section('script')
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('tema/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('tema/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
 <script>
   $(document).ready(function() {
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
+    });
+
+    // datatable
+    $('#tabel-transaksi').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
     });
 
     // detail
@@ -231,7 +257,7 @@
                 </div>
                 <div class="d-flex">
                   <div style="width: 40%;">Alamat</div>
-                  <div style="width: 60%;" class="text-uppercase">${transaksi.alamat}, Kec ${transaksi.data_kecamatan.dis_name}, Kab ${transaksi.data_kabupaten.city_name}, ${transaksi.data_provinsi.prov_name}</div>
+                  <div style="width: 60%;" class="text-uppercase">${transaksi.alamat}, Kec ${transaksi.data_kecamatan.kecamatan}, Kab ${transaksi.data_kabupaten.kabupaten}, ${transaksi.data_provinsi.provinsi}</div>
                 </div>
               </div>
             </div>
@@ -337,6 +363,15 @@
           window.location.reload();
         }
       })
+    })
+
+    // delete
+    $(document).on('click', '.btn-delete', function (e) {
+      e.preventDefault();
+      $(this).attr('data-id');
+      $('#id').val($(this).attr('data-id'));
+
+      $('#modal-danger').modal('show');
     })
   })
 </script>

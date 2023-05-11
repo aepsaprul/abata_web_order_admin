@@ -67,7 +67,10 @@
                         {{ $awal->addDay()->format('d/m/Y') }} <span style="font-weight: bold; font-size: 14px;">s/d</span> {{ $akhir->addDay()->format('d/m/Y') }}
                         {{-- {{ $item->awal }} s/d {{ $item->akhir }} --}}
                       </td>
-                      <td>{{ $item->aktif }}</td>
+                      <td>
+                        <!-- Bootstrap Switch -->
+                        <input type="checkbox" name="my-checkbox" {{ $item->aktif == "y" ? 'checked' : '' }} data-bootstrap-switch>
+                      </td>
                       <td>
                         <a href="{{ route('promo.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-times"></i></button>
@@ -112,6 +115,9 @@
 @endsection
 
 @section('script')
+<!-- Bootstrap Switch -->
+<script src="{{ asset('tema/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
 <script>
   $(document).ready(function() {
     $(document).on('click', '.btn-delete', function (e) {
@@ -150,6 +156,15 @@
           $('.modal-content-produk').html(val);
         }
       })      
+    })
+
+    // switch
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+      console.log('tes')
+    })
+    $("input[name='my-checkbox']").on('change', function () {
+      console.log('tes')
     })
   })
 </script>

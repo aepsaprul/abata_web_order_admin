@@ -15,7 +15,7 @@ class ProdukController extends Controller
 {
   public function index()
   {
-    $produk = Produk::get();
+    $produk = Produk::orderBy('id', 'desc')->get();
 
     return view('produk.index', ['produk' => $produk]);
   }
@@ -35,6 +35,7 @@ class ProdukController extends Controller
     $produk->nama = $request->nama;
     $produk->harga = $request->harga;
     $produk->kategori_id = $request->kategori_id;
+    $produk->berat = $request->berat;
     $produk->min_beli = $request->min_beli;
     $produk->satuan = $request->satuan;
     $produk->deskripsi_singkat = $request->deskripsi_singkat;
@@ -94,6 +95,7 @@ class ProdukController extends Controller
     $produk->nama = $request->nama;
     $produk->harga = $request->harga;
     $produk->kategori_id = $request->kategori_id;
+    $produk->berat = $request->berat;
     $produk->min_beli = $request->min_beli;
     $produk->satuan = $request->satuan;
     $produk->deskripsi_singkat = $request->deskripsi_singkat;
@@ -162,12 +164,4 @@ class ProdukController extends Controller
 
     return redirect()->route('produk');
   }
-  // public function template()
-  // {
-  //   $template = Template::with('detail')->get();
-
-  //   return response()->json([
-  //     'template' => $template
-  //   ]);
-  // }
 }

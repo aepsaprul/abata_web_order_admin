@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PromoController;
@@ -123,4 +124,9 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
   Route::put('promo/{id}/update', [PromoController::class, 'update'])->name('promo.update');
   Route::post('promo/delete', [PromoController::class, 'delete'])->name('promo.delete');
+
+  // notif
+  Route::get('notif', [NotifController::class, 'index'])->name('notif');
+  Route::get('notif/{id}/detail', [NotifController::class, 'detail'])->name('notif.detail');
+  Route::get('notif/tandai', [NotifController::class, 'tandai'])->name('notif.tandai');
 });

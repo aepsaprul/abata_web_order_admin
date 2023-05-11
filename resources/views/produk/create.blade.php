@@ -71,13 +71,19 @@
                     <textarea name="deskripsi_singkat" id="deskripsi_singkat" rows="2" class="form-control" placeholder="Deskripsi singkat"></textarea>
                   </div>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                   <div class="form-group">
-                    <label for="min_beli">Minimal Pembelian</label>
+                    <label for="min_beli">Min beli</label>
                     <input type="number" name="min_beli" id="min_beli" class="form-control" required>                    
                   </div>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
+                  <div class="form-group">
+                    <label for="berat">Berat per gram</label>
+                    <input type="number" name="berat" id="berat" class="form-control" required>                    
+                  </div>
+                </div>
+                <div class="col-2">
                   <div class="form-group">
                     <label for="satuan">Satuan</label>
                     <select name="satuan" id="satuan" class="form-control">

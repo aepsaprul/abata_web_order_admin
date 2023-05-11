@@ -48,30 +48,11 @@
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
+          <a class="notif nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
-            {{-- <span class="badge badge-warning navbar-badge">15</span> --}}
+            <span class="notif-nomor badge badge-danger navbar-badge"></span>
           </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
+          <div class="notif-dropdown dropdown-menu dropdown-menu-lg dropdown-menu-right"></div>
         </li>
       </ul>
     </nav>
@@ -213,6 +194,63 @@
       }
       return rupiah;
     }
+
+    tampil();
+    function tampil() {
+      setTimeout(() => {
+        notif();
+        tampil();
+      }, 1000);
+    }
+
+    // notif
+    function notif() {
+      $.ajax({
+        url: "{{ URL::route('notif') }}",
+        success: function (response) {
+          const notif_length = response.notif.length;
+          if (notif_length > 0) {
+            $('.notif-nomor').html(notif_length);            
+          }
+        }
+      })
+    }
+
+    $('.notif').on('click', function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "{{ URL::route('notif') }}",
+        success: function (response) {
+          const notif_length = response.notif.length;
+          if (notif_length > 0) {
+            let val = ``;
+            $.each(response.notif, function (index, item) {
+              val += `
+                <a href="{{ url('notif/${item.id}/detail') }}" class="dropdown-item">
+                  ${item.deskripsi}
+                </a>
+              `;
+            })
+            val += `
+              <div class="dropdown-divider"></div>
+              <a href="#" class="notif-tandai-sudah-dibaca dropdown-item dropdown-footer text-primary">Tandai sudah dibaca</a>
+            `;
+            $('.notif-dropdown').html(val);
+          }
+        }
+      })
+    })
+
+    $('body').on('click', '.notif-tandai-sudah-dibaca', function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "{{ URL::route('notif.tandai') }}",
+        success: function (response) {
+          $('.notif-nomor').empty();
+          $('.notif-dropdown').empty();
+        }
+      })
+    })
   </script>
 
   @yield('script')
