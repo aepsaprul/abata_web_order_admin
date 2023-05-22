@@ -124,6 +124,7 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
   Route::put('promo/{id}/update', [PromoController::class, 'update'])->name('promo.update');
   Route::post('promo/delete', [PromoController::class, 'delete'])->name('promo.delete');
+  Route::post('promo/ubah_status', [PromoController::class, 'ubahStatus'])->name('promo.ubah_status');
 
   // notif
   Route::get('notif', [NotifController::class, 'index'])->name('notif');

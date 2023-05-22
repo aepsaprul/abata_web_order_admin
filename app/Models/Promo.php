@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promo extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function dataPromoProduk() {
+    return $this->hasMany(PromoProduk::class, 'promo_id', 'id');
+  }
 }

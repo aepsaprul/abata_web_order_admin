@@ -40,7 +40,7 @@
                   <th>Nama</th>
                   <th>Diskon</th>
                   <th>Tanggal</th>
-                  <th>Status</th>
+                  <th>Aktif</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -64,12 +64,12 @@
                           $akhir = Carbon\Carbon::parse($item->akhir)->locale('id');
                           $akhir->settings(['formatFunction' => 'translatedFormat']);
                         @endphp
-                        {{ $awal->addDay()->format('d/m/Y') }} <span style="font-weight: bold; font-size: 14px;">s/d</span> {{ $akhir->addDay()->format('d/m/Y') }}
+                        {{ $awal->format('d/m/Y') }} <span style="font-weight: bold; font-size: 14px;">s/d</span> {{ $akhir->format('d/m/Y') }}
                         {{-- {{ $item->awal }} s/d {{ $item->akhir }} --}}
                       </td>
                       <td>
                         <!-- Bootstrap Switch -->
-                        <input type="checkbox" name="my-checkbox" {{ $item->aktif == "y" ? 'checked' : '' }} data-bootstrap-switch>
+                        <input type="checkbox" id="status_{{ $item->id }}" data-id="{{ $item->id }}" name="status" {{ $item->aktif == "y" ? 'checked' : '' }} data-bootstrap-switch>
                       </td>
                       <td>
                         <a href="{{ route('promo.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
@@ -120,6 +120,19 @@
 
 <script>
   $(document).ready(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    
     $(document).on('click', '.btn-delete', function (e) {
       e.preventDefault();
       $(this).attr('data-id');
@@ -159,13 +172,32 @@
     })
 
     // switch
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-      console.log('tes')
-    })
-    $("input[name='my-checkbox']").on('change', function () {
-      console.log('tes')
-    })
+    $(document).on('change', 'input[name="status"]', function () {
+      let id = $(this).attr('data-id');
+
+      if ($('#status_' + id).is(":checked")) {
+        val_state = "y";
+      } else {
+        val_state = "n";
+      }
+
+      var formData = {
+        id: id,
+        status: val_state
+      }
+
+      $.ajax({
+        type: "post",
+        url: "{{ URL::route('promo.ubah_status') }}",
+        data: formData,
+        success: function (response) {
+          Toast.fire({
+            icon: 'success',
+            title: 'Status promo berhasil diubah'
+          });
+        }
+      });
+    });
   })
 </script>
 @endsection

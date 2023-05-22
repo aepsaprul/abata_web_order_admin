@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{ asset('tema/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('tema/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ asset('tema/plugins/sweetalert2/sweetalert2.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('tema/dist/css/adminlte.min.css') }}">
 
@@ -179,6 +181,8 @@
   <script src="{{ asset('tema/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- overlayScrollbars -->
   <script src="{{ asset('tema/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+  <!-- SweetAlert2 -->
+  <script src="{{ asset('tema/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
   <!-- AdminLTE App -->
   <script src="{{ asset('tema/dist/js/adminlte.js') }}"></script>
 

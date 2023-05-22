@@ -46,41 +46,76 @@ class PromoController extends Controller
     $promo->satuan = $request->satuan;
     $promo->awal = $request->awal;
     $promo->akhir = $request->akhir;
+    $promo->aktif = "y";
     $promo->save();
 
-    foreach ($produk as $key => $item) {
-      $promo_produk = new PromoProduk;
-      $promo_produk->promo_id = $promo->id;
-      $promo_produk->produk_id = $item;
-      $promo_produk->save();
+    if ($produk) {
+      foreach ($produk as $key => $item) {
+        $promo_produk = new PromoProduk;
+        $promo_produk->promo_id = $promo->id;
+        $promo_produk->produk_id = $item;
+        $promo_produk->save();
+      }
     }
 
     return redirect()->route('promo');
   }
   public function edit($id)
   {
-    $promo = Promo::find($id);
+    $promo = Promo::with('dataPromoProduk')->find($id);
+    $kategori = Kategori::get();
     
-    return view('promo.edit', ['promo' => $promo]);
+    return view('promo.edit', [
+      'promo' => $promo,
+      'kategori' => $kategori
+    ]);
   }
   public function update(Request $request, $id)
   {
+    $produk = $request->produk;
+
     $promo = Promo::find($id);
     $promo->nama = $request->nama;
     $promo->diskon = $request->diskon;
     $promo->satuan = $request->satuan;
-    $promo->produk_id = $request->produk_id;
     $promo->awal = $request->awal;
     $promo->akhir = $request->akhir;
     $promo->save();
+
+    if ($produk) {
+
+      $promo_produk = PromoProduk::where('promo_id', $promo->id);
+      $promo_produk->delete();
+
+      foreach ($produk as $key => $item) {
+        $promo_produk_update = new PromoProduk;
+        $promo_produk_update->promo_id = $promo->id;
+        $promo_produk_update->produk_id = $item;
+        $promo_produk_update->save();
+      }
+    }
 
     return redirect()->route('promo');
   }
   public function delete(Request $request)
   {
     $promo = Promo::find($request->id);
+
+    $promo_produk = PromoProduk::where('promo_id', $promo->id);
+    $promo_produk->delete();
+
     $promo->delete();
 
     return redirect()->route('promo');
+  }
+  public function ubahStatus(Request $request)
+  {
+    $promo = Promo::find($request->id);
+    $promo->aktif = $request->status;
+    $promo->save();
+
+    return response()->json([
+      'status' => 200
+    ]);
   }
 }
