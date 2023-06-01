@@ -113,7 +113,7 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
   Route::get('transaksi/{id}/show', [TransaksiController::class, 'show'])->name('transaksi.show');
   Route::get('transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
-  Route::put('transaksi/{id}/update', [TransaksiController::class, 'update'])->name('transaksi.update');
+  Route::post('transaksi/update', [TransaksiController::class, 'update'])->name('transaksi.update');
   Route::post('transaksi/delete', [TransaksiController::class, 'delete'])->name('transaksi.delete');
 
   // promo

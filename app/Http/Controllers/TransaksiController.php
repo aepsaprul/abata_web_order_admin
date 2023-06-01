@@ -61,8 +61,9 @@ class TransaksiController extends Controller
       'konfirmasi' => $konfirmasi
     ]);
   }
-  public function update(Request $request, $id)
+  public function update(Request $request)
   {
+    $id = $request->id;
     $status = $request->status_id;
 
     $transaksi = Transaksi::find($id);

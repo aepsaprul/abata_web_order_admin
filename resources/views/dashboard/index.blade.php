@@ -356,17 +356,15 @@
       e.preventDefault();
       const id = $('#transaksi_id').val();
       const status = $('#status_id').val();
-      
-      let url = "{{ route('transaksi.update', ':id') }}";
-      url = url.replace(':id', id);
 
       let formData = {
+        id: id,
         status_id: status
       }
 
       $.ajax({
-        url: url,
-        type: "put",
+        url: "{{ URL::route('transaksi.update') }}",
+        type: "post",
         data: formData,
         success: function (response) {
           window.location.reload();
