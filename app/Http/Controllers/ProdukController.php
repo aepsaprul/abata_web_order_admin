@@ -164,4 +164,14 @@ class ProdukController extends Controller
 
     return redirect()->route('produk');
   }
+  public function tampil(Request $request)
+  {
+    $produk = Produk::find($request->id);
+    $produk->tampil = $request->tampil;
+    $produk->save();
+
+    return response()->json([
+      'status' => 200
+    ]);
+  }
 }

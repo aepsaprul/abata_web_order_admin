@@ -109,7 +109,13 @@
                 @foreach ($transaksi_page as $key => $item)
                   <tr>
                     <td><a href="#" class="detail" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalDetail">{{ $item->kode }}</a></td>
-                    <td>{{ $item->dataCustomer->nama_lengkap }}</td>
+                    <td>
+                      @if ($item->dataCustomer)
+                        {{ $item->dataCustomer->nama_lengkap }}
+                      @else
+                        <div class="text-danger">kosong</div>
+                      @endif
+                    </td>
                     <td class="text-right">Rp. @currency($item->total)</td>
                     <td>
                       <span class="text-capitalize {{ $item->status == 6 ? 'bg-success' : 'bg-danger' }} rounded py-1 px-2">{{ $item->dataStatus->nama }}</span> 

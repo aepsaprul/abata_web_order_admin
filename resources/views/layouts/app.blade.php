@@ -85,37 +85,43 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="{{ route('kategori') }}" class="nav-link {{ request()->is(['kategori', 'kategori/*']) ? 'active' : '' }}">
-                <i class="nav-icon far fa-folder" style="width: 30px; bpadding-top: 2px; padding-bottom: 2px;border: 1px solid gray ;"></i>
+                <i class="nav-icon far fa-folder" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('produk') }}" class="nav-link {{ request()->is(['produk', 'produk/*']) ? 'active' : '' }}">
-                <i class="nav-icon fas fa-boxes" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon fas fa-boxes" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Produk</p>
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ route('customer') }}" class="nav-link {{ request()->is(['customer', 'customer/*']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
+                <p>Customer</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('slide') }}" class="nav-link {{ request()->is(['slide', 'slide/*']) ? 'active' : '' }}">
-                <i class="nav-icon far fa-image" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon far fa-image" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Slide</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('transaksi') }}" class="nav-link {{ request()->is(['transaksi', 'transaksi/*']) ? 'active' : '' }}">
-                <i class="nav-icon fas fa-random" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon fas fa-random" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Transaksi</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('cara_pesan') }}" class="nav-link {{ request()->is(['cara_pesan', 'cara_pesan/*']) ? 'active' : '' }}">
-                <i class="nav-icon fa fa-edit" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon fa fa-edit" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Cara Pesan</p>
               </a>
             </li>
             <li class="nav-item {{ request()->is(['template', 'template/*', 'template_detail', 'template_detail/*']) ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ request()->is(['template', 'template/*', 'template_detail', 'template_detail/*']) ? 'active' : '' }} text-capitalize">
-                <i class="nav-icon fa fa-vector-square text-center"  style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i> 
+                <i class="nav-icon fa fa-vector-square text-center"  style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i> 
                 <p>Template<i class="right fas fa-angle-left"></i></p>
               </a>
               <ul class="nav nav-treeview">
@@ -135,19 +141,19 @@
             </li>
             <li class="nav-item">
               <a href="{{ route('ekspedisi') }}" class="nav-link {{ request()->is(['ekspedisi', 'ekspedisi/*']) ? 'active' : '' }}">
-                <i class="nav-icon fas fa-truck" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon fas fa-truck" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Pengiriman</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('rekening') }}" class="nav-link {{ request()->is(['rekening', 'rekening/*']) ? 'active' : '' }}">
-                <i class="nav-icon fas fa-money-check-alt" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon fas fa-money-check-alt" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Rekening</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('promo') }}" class="nav-link {{ request()->is(['promo', 'promo/*']) ? 'active' : '' }}">
-                <i class="nav-icon fas fa-tags" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border: 1px solid gray;"></i>
+                <i class="nav-icon fas fa-tags" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
                 <p>Promo</p>
               </a>
             </li>
@@ -230,7 +236,7 @@
             let val = ``;
             $.each(response.notif, function (index, item) {
               val += `
-                <a href="{{ url('notif/${item.id}/detail') }}" class="dropdown-item">
+                <a href="{{ url('${item.link}') }}" class="dropdown-item">
                   ${item.deskripsi}
                 </a>
               `;

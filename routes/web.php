@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CaraPesanController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KategoriController;
@@ -52,6 +53,13 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::put('produk/{id}/update', [ProdukController::class, 'update'])->name('produk.update');
   Route::post('produk/delete', [ProdukController::class, 'delete'])->name('produk.delete');
   Route::get('produk/template', [ProdukController::class, 'template'])->name('produk.template');
+  Route::post('produk/tampil', [ProdukController::class, 'tampil'])->name('produk.tampil');
+
+  // customer
+  Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+  Route::get('customer/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+  Route::put('customer/{id}/update', [CustomerController::class, 'update'])->name('customer.update');
+  Route::post('customer/delete', [CustomerController::class, 'delete'])->name('customer.delete');
 
   // slide
   Route::get('slide', [SlideController::class, 'index'])->name('slide');

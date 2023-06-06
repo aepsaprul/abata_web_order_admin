@@ -50,6 +50,7 @@
                   <th>Kategori</th>
                   <th>Berat</th>
                   <th>Gambar</th>
+                  <th>Tampil</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -66,6 +67,9 @@
                       </td>
                       <td>@currency($item->berat) gram</td>
                       <td><img src="{{ asset('img_produk/' . $item->gambar) }}" alt="" style="max-width: 100px;"></td>
+                      <td class="text-center">
+                        <input type="checkbox" name="checkTampil" id="check_tampil_{{ $item->id }}" data-id="{{ $item->id }}" {{ $item->tampil == 'y' ? 'checked' : '' }}>
+                      </td>
                       <td>
                         <a href="{{ route('produk.edit', [$item->id]) }}" class="btn btn-primary btn-sm" style="width: 40px;"><i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" style="width: 40px;"><i class="fa fa-times"></i></button>
@@ -120,6 +124,48 @@
 
 <script>
   $(document).ready(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    // switch
+    $(document).on('change', 'input[name="checkTampil"]', function () {
+      let id = $(this).attr('data-id');
+
+      if ($('#check_tampil_' + id).is(":checked")) {
+        val_state = "y";
+      } else {
+        val_state = "n";
+      }
+
+      var formData = {
+        id: id,
+        tampil: val_state
+      }
+
+      $.ajax({
+        url: "{{ URL::route('produk.tampil') }}",
+        type: "post",
+        data: formData,
+        success: function (response) {
+          Toast.fire({
+            icon: 'success',
+            title: 'Berhasil diubah'
+          });
+        }
+      });
+    });
+
+    // delete
     $(document).on('click', '.btn-delete', function (e) {
       e.preventDefault();
       $(this).attr('data-id');
