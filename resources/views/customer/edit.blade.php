@@ -31,11 +31,11 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="row">
-                  <div class="col">
+                  <div class="col text-center">
                     @if ($customer->gambar)
-                      <img src="{{ url(env('APP_URL_CLIENT') . '/img_customer/' . $customer->gambar) }}" alt="img_customer" style="width: 100%; border-radius: 50%;">
+                      <img src="{{ url(env('APP_URL_CLIENT') . '/img_customer/' . $customer->gambar) }}" alt="img_customer" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;">
                     @else
-                      <img src="{{ asset('img/1665988705.jpg') }}" alt="img_customer" style="width: 100%; border-radius: 50%;">
+                      <img src="{{ asset('img/1665988705.jpg') }}" alt="img_customer" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;">
                     @endif
                   </div>
                 </div>
@@ -131,6 +131,37 @@
         </div>
       </div>
     </form>
+    @if ($customer->segmen)
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+            <div>Data Pengajuan Member</div>
+          </div>
+          <div class="card-body">
+            <div>
+              @if($customer->nomor_member)
+                <div>
+                  <label>ID Member</label>
+                </div>
+                <div>
+                  <input type="text" value="{{ $customer->nomor_member }}" disabled>
+                </div>
+              @endif
+            </div>
+            <div>
+              @if ($customer->foto_ktp)
+                <div>
+                  <label for="kodepos">Foto KTP</label>
+                </div>
+                <div>
+                  <img src="{{ url(env('APP_URL_CLIENT') . '/img_ktp/' . $customer->foto_ktp) }}" alt="img_ktp" style="max-width: 300px;">
+                </div>
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif
   </div><!--/. container-fluid -->
 </section>
 <!-- /.content -->

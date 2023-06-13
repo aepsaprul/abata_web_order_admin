@@ -54,7 +54,7 @@
                       <td>
                         @if ($item->segmen == "member")
                           <div class="text-success">{{ $item->segmen }}</div>
-                        @elseif ($item->segmen == "proses_baru" || $item->segmen == "proses_lama")
+                        @elseif ($item->segmen == "proses_baru" || $item->segmen == "proses_lama" || $item->segmen == "proses_perpanjang")
                           <div class="text-danger">{{ $item->segmen }}</div>
                         @else
                           Retail
