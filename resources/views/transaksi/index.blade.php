@@ -235,7 +235,11 @@
                             $.each(item.data_keranjang_template, function (index_keranjang_template, item_keranjang_template) {
                               val += `${item_keranjang_template.data_template.nama}: ${item_keranjang_template.data_template_detail.nama},`;
                             })
-                          val += `</div>
+                            val += `
+                          </div>
+                          <div>
+                            <a href="https://shop.abatagroup.co.id/public/img_desain/${item.gambar}" target="_blank">desain</a>
+                          </div>
                         </div>
                       </div>
                       <div class="mt-2">
