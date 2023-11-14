@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotifController;
 use App\Http\Controllers\PengirimanController;
@@ -138,4 +139,10 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
   Route::get('notif', [NotifController::class, 'index'])->name('notif');
   Route::get('notif/{id}/detail', [NotifController::class, 'detail'])->name('notif.detail');
   Route::get('notif/tandai', [NotifController::class, 'tandai'])->name('notif.tandai');
+
+  // landing
+  Route::get('landing', [LandingController::class, 'index'])->name('landing');
+  Route::get('landing/{id}/edit', [LandingController::class, 'edit'])->name('landing.edit');
+  Route::put('landing/{id}/update', [LandingController::class, 'update'])->name('landing.update');
+  Route::get('landing/{id}/delete', [LandingController::class, 'delete'])->name('landing.delete');
 });

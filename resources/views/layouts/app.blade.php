@@ -157,6 +157,12 @@
                 <p>Promo</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('landing') }}" class="nav-link {{ request()->is(['landing', 'landing/*']) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-scroll" style="width: 30px; padding-top: 2px; padding-bottom: 2px; border-left: 2px solid gray;"></i>
+                <p>Landing</p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
