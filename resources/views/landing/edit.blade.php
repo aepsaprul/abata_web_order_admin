@@ -76,6 +76,16 @@
                   <input type="file" name="img_6" id="img_6" class="form-control">
                 </div>
               </div>
+              <div class="row mb-3">
+                <div class="col-4">
+                  <label for="telepon">Telepon</label>
+                  <input type="text" name="telepon" id="telepon" class="form-control">
+                </div>
+                <div class="col-8">
+                  <label for="teks_wa">Teks WhatsApp</label>
+                  <textarea name="teks_wa" id="teks_wa" rows="4" class="form-control"></textarea>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-3 mb-3">
                   <label for="teks_1">Teks 1</label>

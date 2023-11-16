@@ -97,6 +97,8 @@ class LandingController extends Controller
     $landing->teks_2 = $request->teks_2;
     $landing->teks_3 = $request->teks_3;
     $landing->teks_4 = $request->teks_4;
+    $landing->telepon = $request->telepon;
+    $landing->teks_wa = $request->teks_wa;
     $landing->pixel_1 = $request->pixel_1;
     $landing->pixel_2 = $request->pixel_2;
     $landing->save();
